@@ -1,0 +1,14 @@
+{
+  "name": "techbookfest-5-grpc-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ktr0731/techbookfest-5-grpc-web.git",
+  "author": "ktr0731 <ktr@syfm.me>",
+  "license": "MIT",
+  "scripts": {
+    "proto": "protoc --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --js_out='import_style=commonjs,binary:.' --ts_out='service=true:.' api/api.proto"
+  },
+  "dependencies": {
+    "ts-protoc-gen": "^0.7.6"
+  }
+}
