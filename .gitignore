@@ -75,4 +75,5 @@ typings/
 .serverless
 
 api/api_*
+api/api.pb*
 dist

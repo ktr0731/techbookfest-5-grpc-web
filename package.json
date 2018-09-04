@@ -6,7 +6,7 @@
   "author": "ktr0731 <ktr@syfm.me>",
   "license": "MIT",
   "scripts": {
-    "proto": "protoc --go_out=plugins=grpc:api --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --js_out='import_style=commonjs,binary:.' --ts_out='service=true:.' --proto_path=$GOPATH/src --proto_path=api api/api.proto",
+    "proto": "protoc --go_out=plugins=grpc:api --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --js_out='import_style=commonjs,binary:api' --ts_out='service=true:api' --proto_path=$GOPATH/src --proto_path=api api/api.proto",
     "start": "concurrently 'parcel index.html' 'go run server/main.go'"
   },
   "dependencies": {
