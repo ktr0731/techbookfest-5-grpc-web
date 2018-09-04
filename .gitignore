@@ -75,3 +75,4 @@ typings/
 .serverless
 
 api/api_*
+dist
