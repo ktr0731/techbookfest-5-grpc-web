@@ -1,5 +1,5 @@
-import { SimpleRequest } from './api/api_pb';
-import { SimpleServiceClient } from "./api/api_pb_service";
+import { SimpleRequest } from '../api/api_pb';
+import { SimpleServiceClient } from "../api/api_pb_service";
 
 const req = new SimpleRequest();
 req.setName("kumiko oumae");
