@@ -3,9 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"math/rand"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
@@ -25,8 +27,17 @@ func (s *simpleServer) Unary(ctx context.Context, req *api.SimpleRequest) (*api.
 	}, nil
 }
 
-func (s *simpleServer) ClientStreaming(api.SimpleService_ClientStreamingServer) error {
-	panic("not implemented")
+func (s *simpleServer) ClientStreaming(stream api.SimpleService_ClientStreamingServer) error {
+	var names []string
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return stream.SendAndClose(&api.SimpleResponse{
+				Message: fmt.Sprintf("Hello, %s!", strings.Join(names, ", ")),
+			})
+		}
+		names = append(names, req.GetName())
+	}
 }
 
 func (s *simpleServer) ServerStreaming(req *api.SimpleRequest, stream api.SimpleService_ServerStreamingServer) error {
