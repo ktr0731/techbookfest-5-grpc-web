@@ -6,6 +6,7 @@
 
 # Usage
 ``` sh
+$ yarn
 $ yarn run proto
 $ yarn run start
 ```
