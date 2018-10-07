@@ -64,8 +64,8 @@ func main() {
 
 	ws := grpcweb.WrapServer(
 		s,
-		grpcweb.WithWebsockets(true),
-		grpcweb.WithWebsocketOriginFunc(func(req *http.Request) bool { return true }),
+		// grpcweb.WithWebsockets(true),
+		// grpcweb.WithWebsocketOriginFunc(func(req *http.Request) bool { return true }),
 	)
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "proto: %s", r.Proto)
@@ -73,8 +73,10 @@ func main() {
 	http.Handle("/", ws)
 
 	log.Println("gRPC Web server listen at localhost:50051")
-	if err := http.ListenAndServeTLS(":50051", "pem/localhost.pem", "pem/localhost-key.pem", nil); err != nil {
+	// if err := http.ListenAndServeTLS(":50051", "pem/localhost.pem", "pem/localhost-key.pem", nil); err != nil {
+	// 	log.Fatal(err)
+	// }
+	if err := http.ListenAndServe(":50051", nil); err != nil {
 		log.Fatal(err)
 	}
-	// http.ListenAndServe(":50051", nil)
 }

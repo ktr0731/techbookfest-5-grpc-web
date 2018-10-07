@@ -2,7 +2,8 @@ import { grpc } from 'grpc-web-client';
 import { SimpleRequest } from '../api/api_pb';
 import { SimpleServiceClient, SimpleService } from "../api/api_pb_service";
 
-const host = 'https://localhost:50051';
+// const host = 'https://localhost:50051';
+const host = 'http://localhost:50051';
 const client = new SimpleServiceClient(host);
 
 document.querySelector("#unary-button").addEventListener("click", () => {
@@ -41,7 +42,7 @@ document.querySelector("#client-stream-button").addEventListener("click", () => 
 
     const client = grpc.client(SimpleService.ClientStreaming, {
         host: host,
-        transport: grpc.WebsocketTransportFactory,
+        // transport: grpc.WebsocketTransportFactory,
     });
     client.onMessage(message => {
         e.innerText += message.array[0];
